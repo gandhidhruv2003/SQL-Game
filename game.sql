@@ -88,7 +88,8 @@ create table Crime_Scene_Report (
 );
 
 create table Interview (
-    interviewer_id int primary key not null,
+	interview_id int not null,
+    interviewee_id int not null,
     transcript TEXT,
-    foreign key (interviewer_id) references Person(person_id)
+    foreign key (interviewee_id) references Person(person_id)
 );
