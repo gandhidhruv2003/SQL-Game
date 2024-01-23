@@ -13,7 +13,7 @@ create table Room (
     room_id int primary key not null,
     room_type enum ('Single', 'Double', 'Suite'),
     availability enum ('Available', 'Occupied', 'Under Maintenance'),
-    rate_per_night decimal(10, 2),
+    rate_per_night decimal (10, 2),
     smoking_allowed enum ('Yes', 'No')
 );
 
@@ -59,7 +59,7 @@ create table Demography (
     marital_status enum ('Single', 'Married', 'Divorced'),
     education_level varchar(50),
     occupation varchar(50),
-    disabilities varchar(255),
+    disabilities varchar(255) default 'null',
     height int,
     hair_color varchar(20),
     eye_color varchar(20),
@@ -71,7 +71,7 @@ create table Criminal_Record (
     criminal_id int not null,
     crime_type varchar(50),
     crime_date date,
-    arress_date date,
+    arrest_date date,
     court_date date,
     conviction_status enum ('Convicted', 'Acquitted', 'Pending'),
     sentence varchar(255),
@@ -89,7 +89,7 @@ create table Crime_Scene_Report (
 
 create table Interrogation (
 	interrogation_id int not null primary key,
-    interviewee_id int not null,
+    interrogee_id int not null,
     transcript TEXT,
-    foreign key (interviewee_id) references Person(person_id)
+    foreign key (interrogee_id) references Person(person_id)
 );
