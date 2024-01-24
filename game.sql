@@ -4,7 +4,6 @@ USE game;
 create table Person (
     person_id int primary key not null,
     name varchar(255),
-    email varchar(255),
     phone_number varchar(15),
     address text
 );
