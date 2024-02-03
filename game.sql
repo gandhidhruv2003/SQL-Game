@@ -58,7 +58,7 @@ create table Demography (
     marital_status enum ('Single', 'Married', 'Divorced'),
     education_level varchar(50),
     occupation varchar(50),
-    disabilities varchar(255) default 'null',
+    disabilities varchar(255) default NULL,
     height int,
     hair_color varchar(20),
     eye_color varchar(20),
@@ -74,12 +74,11 @@ create table Criminal_Record (
     court_date date,
     conviction_status enum ('Convicted', 'Acquitted', 'Pending'),
     sentence varchar(255),
-    sentence_length int,
+    sentence_length int default 0,
     foreign key (criminal_id) references Person(person_id)
 );
 
 create table Crime_Scene_Report (
-    report_id int primary key not null,
     date_of_crime date,
     type varchar(50),
     description varchar(255),
@@ -103,7 +102,7 @@ values
     (11794, 'Doretta Bowline', '737391581', 'Liddicoat Circle'),
     (12533, 'Fawn Harrop', '325500736', 'Keel Circle'),
     (12103, 'Gregoria Kayler', '876115774', 'Northstead Road'),
-    (11403, 'Phil Mayer', '113335405', 'Back Eddisbury Circle'),
+    (11403, 'Phil Mayer - Culprit', '113335405', 'Back Eddisbury Circle'),
     ('11177', 'Charlie Korth', '355304085', 'Wash Pan Street');
 
 insert into room (room_id, room_type, availability, rate_per_night, smoking_allowed)
@@ -184,5 +183,33 @@ values
 	(61016, 11794, 406, '2008-10-09'),
 	(69143, 12533, 407, '2003-12-12');
     
+insert into demography (demographic_id, person_id, gender, date_of_birth, marital_status, education_level, occupation, disabilities, height, hair_color, eye_color)
+values
+	('30743', '10034', 'Male', '1978-05-21', 'Married', 'Bachelor\'s Degree', 'Engineer', NULL, 188, 'Brown', 'Blue'),
+	('31062', '11177', 'Male', '1989-09-15', 'Single', 'Bachelor\'s Degree', 'Receptionist', NULL, 178, 'Black', 'Brown'),
+	('30744', '11403', 'Male', '1981-03-04', 'Divorced', 'High School Diploma', 'Janitors', 'Limb loss', 181, 'Brown', 'Green'),
+	('30548', '11794', 'Female', '1975-11-30', 'Married', 'Master\'s Degree', 'Manager', NULL, 168, 'Blonde', 'Hazel'),
+	('30880', '12103', 'Female', '1983-07-17', 'Single', 'Associate\'s Degree', 'Masseuse', NULL, 163, 'Brown', 'Brown'),
+	('30532', '12533', 'Female', '1992-12-08', 'Single', 'Bachelor\'s Degree', 'Accountant', NULL, 172, 'Brown', 'Brown'),
+	('38532', '13647', 'Male', '1982-08-29', 'Divorced', 'High School Diploma', 'Chef', NULL, 175, 'Brown', 'Brown'),
+	('35528', '14215', 'Female', '1974-04-25', 'Married', 'Doctorate', 'Physician', NULL, 165, 'Blonde', 'Blue'),
+	('35891', '15545', 'Female', '1970-10-12', 'Divorced', 'Bachelor\'s Degree', 'Lawyer', NULL, 170, 'Brown', 'Green'),
+	('34236', '16458', 'Male', '1977-12-03', 'Married', 'Master\'s Degree', 'Architect', NULL, 183, 'Brown', 'Brown');
+
+insert into criminal_record (record_id, crime_type, crime_date, arrest_date, court_date, conviction_status, sentence, sentence_length)
+values
+	(20693, 'Murder', '2023-05-10', '2023-05-15', '2023-06-20', 'Convicted', 'Jail', 48),
+	(22030, 'Assault', '2022-12-03', '2022-12-05', '2023-01-10', 'Convicted', 'Jail', 4),
+	(20773, 'Drug Possession', '2023-08-20', '2023-08-25', '2023-09-30', 'Convicted', 'Execution', NULL),
+	(20593, 'Burglary', '2023-02-15', '2023-02-18', '2023-03-25', 'Pending', NULL, NULL),
+	(20967, 'Fraud', '2023-10-05', '2023-10-10', NULL, 'Acquitted', NULL, NULL);
     
+insert into interrogation (interrogation_id, interrogee_id, transcript)
+values
+	(51180, 14215, 'I heard someone shouting. When I checked through the peephole, I saw a brown haired man.');
+    
+insert into crime_scene_report (date_of_crime, type, description, place_of_crime)
+values
+	('2018-02-02', 'Murder', 'Murder', 'Hotel A90'),
+	('2018-01-15', 'Robbery', 'A Man Dressed as Spider-Man Is on a Robbery Spree', 'Grand Rapids');
     
